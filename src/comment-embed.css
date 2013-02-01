@@ -1,0 +1,68 @@
+.ala-embedded-comment,
+.ala-embedded-comment * {
+	/* Reset all styles within this container to UA defaults. */
+	-webkit-all: default;
+	-moz-all: default;
+	all: default;
+	background: none;
+	border-width: 0;
+	margin: 0;
+	padding: 0;
+}
+.ala-embedded-comment {
+	background: #fff;
+	border: 1px solid #dddddd;
+	border-radius: 6px;
+	display: block;
+	font: normal 14px/1.6 Georgia, serif;
+	min-height: 96px;
+	padding: 15px 11px;
+}
+.ala-embedded-comment ::selection {
+	background: #ddd;
+	color: #000;
+}
+.ala-embedded-comment a {
+	color: #2455c3;
+	text-decoration: none;
+}
+.ala-embedded-comment a:hover {
+	text-decoration: underline;
+}
+
+.ala-embedded-comment p {
+	clear: both;
+	margin: 10px 0;
+}
+.ala-embedded-comment blockquote {
+	font-style: italic;
+	border-left: 1px dotted #bdbdbd;
+	padding-left: 12px;
+	margin-left: 6px;
+}
+
+.ala-embedded-comment .ala-commenter-avatar {
+	border-radius: 5px;
+	display: block;
+	float: left;
+	margin-top: -3px;
+	margin-right: 12px;
+	margin-bottom: 8px;
+	overflow: hidden;
+}
+.ala-embedded-comment .ala-commenter-avatar img {
+	line-height: .5;
+	float: left;
+}
+
+.ala-embedded-comment .ala-commenter-name {
+	font: bold 18px/1 sans-serif;
+}
+
+.ala-embedded-comment .ala-commenter-meta {
+	color: #666;
+	display: block;
+	font: normal 11px/1 sans-serif;
+	margin: .65em 0;
+	text-decoration: none;
+}

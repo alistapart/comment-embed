@@ -1,0 +1,28 @@
+{
+  "name": "comment-embed",
+  "title": "Embedded ALA comments",
+  "description": "The best jQuery plugin ever.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/alistapart/comment-embed",
+  "author": {
+    "name": "Wilto",
+    "email": "mat@matmarquis.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/alistapart/comment-embed.git"
+  },
+  "bugs": {
+    "url": "https://github.com/alistapart/comment-embed/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/alistapart/comment-embed/blob/master/LICENSE-MIT"
+    }
+  ],
+  "dependencies": {
+    "jquery": "*"
+  },
+  "keywords": []
+}

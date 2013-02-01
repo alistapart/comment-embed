@@ -1,0 +1,9 @@
+html {
+	background: hotpink;
+}
+
+@media (max-width: 40em) {
+	html {
+		border: 1px solid lime;
+	}
+}

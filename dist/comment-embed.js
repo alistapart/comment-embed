@@ -175,54 +175,6 @@
 		};
 	};
 
-	var xmlHttp = (function() {
-		var xmlhttpmethod = false;
-		try {
-			xmlhttpmethod = new XMLHttpRequest();
-		}
-		catch( e ){
-			xmlhttpmethod = new ActiveXObject( "Microsoft.XMLHTTP" );
-		}
-		return function(){
-			return xmlhttpmethod;
-		};
-	}());
-
-	ala.ajax = function( url, options ) {
-		var req = xmlHttp(),
-			settings = {
-				success: function(){},
-				error: function(){},
-				method: "GET",
-				async: true,
-				data: null
-			};
-
-		if( options ){
-			ala.extend( settings, options );
-		}
-		if( !url ){
-			url = settings.url;
-		}
-		if( !req || !url ){
-			return;
-		}
-
-		req.open( settings.method, url + settings.data, settings.async );
-		req.setRequestHeader("Content-type","application/html");
-		if( req.readyState === 4 ){
-			return;
-		}
-		req.onreadystatechange = function () {
-			if ( req.readyState !== 4 || req.status !== 200 && req.status !== 304 ){
-				return settings.error( req.responseText, req.status, req );
-			}
-			settings.success( req.responseText, req.status, req );
-		};
-
-		req.send( null );
-	};
-
 	w.ala = ala;
 
 }( this ));
@@ -265,15 +217,17 @@
 
 				this.parentNode.insertBefore( iframe, this );
 
-				setTimeout(function() {
-					iframe.height = iframe.contentWindow.document.body.scrollHeight;
+				setTimeout(function() { // Temp
+					// I don’t think this approach will work cross-domain.
+					iframe.height = iframe.contentWindow.document.getElementById( "comment" ).scrollHeight + 25;
 				}, 100 );
 
 				script[ o.pluginName ]( "_eventBindings", iframe );
 			},
 			_eventBindings: function( iframe ) {
 				var fixHeight = function() {
-						iframe.height = iframe.contentWindow.document.body.scrollHeight;
+						// See previous comment.
+						iframe.height = iframe.contentWindow.document.getElementById( "comment" ).scrollHeight + 25;
 					};
 
 				ala( w ).bind( "resize", ala.fn.throttle( fixHeight, 200 ) );

@@ -6,9 +6,10 @@
   <!-- Load local jQuery. This can be overridden with a ?jquery=___ param. -->
   <script src="libs/jquery/jquery.js"></script>
   <!-- Load local QUnit (grunt requires v1.0.0 or newer). -->
-  <link rel="stylesheet" href="../libs/qunit/qunit.css" media="screen">
+  <link rel="stylesheet" href="libs/qunit/qunit.css" media="screen">
   <script src="libs/qunit/qunit.js"></script>
   <!-- Load local lib and tests. -->
+  <script src="../src/comment-util.js"></script>
   <script src="../src/comment-embed.js"></script>
   <script src="comment-embed_test.js"></script>
   <!-- Removing access to jQuery and $. But it'll still be available as _$, if
@@ -23,7 +24,16 @@
   <h2 id="qunit-userAgent"></h2>
   <ol id="qunit-tests"></ol>
   <div id="qunit-fixture">
-    
+
+	<div class="each">
+    </div>
+    <div class="each">
+    </div>
+    <div class="each">
+    </div>
+
+    <div class="data">
+    </div>
   </div>
 </body>
 </html>

@@ -8,6 +8,7 @@
 	<h1><?php
 	$id = $_REQUEST[ "id"];
 
+	if( $id == 2 ):
 ?>
 
 	<div class="ala-embedded-comment" id="comment">

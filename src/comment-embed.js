@@ -142,6 +142,15 @@
 		});
 	};
 
+	ala.fn.prev = function( ){
+		var prev = this[ 0 ].previousSibling;
+
+		while( prev && prev.nodeType !== 1 ) {
+			prev = prev.previousSibling;
+		}
+		return prev;
+	};
+
 	ala.fn.trigger = function( evt, args ){
 		var evts = evt.split( " " );
 		return this.each(function(){
@@ -187,40 +196,44 @@
 			return xmlhttpmethod;
 		};
 	}());
-
+	
 	ala.ajax = function( url, options ) {
 		var req = xmlHttp(),
-			settings = {
-				success: function(){},
-				error: function(){},
-				method: "GET",
-				async: true,
-				data: null
-			};
-
+		settings = ala.ajax.settings;
+		
 		if( options ){
 			ala.extend( settings, options );
 		}
 		if( !url ){
 			url = settings.url;
 		}
+		
 		if( !req || !url ){
 			return;
 		}
-
+		
 		req.open( settings.method, url + settings.data, settings.async );
-		req.setRequestHeader("Content-type","application/html");
+		
+		req.onreadystatechange = function () {
+			if ( req.readyState !== 4 || req.status !== 200 && req.status !== 304 ){
+				return settings.error( req.responseText );
+			} else if ( req.readyState === 4 ) {
+				settings.success( req.responseText, req.status, req );
+			}
+		};
 		if( req.readyState === 4 ){
 			return;
 		}
-		req.onreadystatechange = function () {
-			if ( req.readyState !== 4 || req.status !== 200 && req.status !== 304 ){
-				return settings.error( req.responseText, req.status, req );
-			}
-			settings.success( req.responseText, req.status, req );
-		};
 
 		req.send( null );
+	};
+	
+	ala.ajax.settings = {
+		success: function(){},
+		error: function(){},
+		method: "GET",
+		async: true,
+		data: null
 	};
 
 	w.ala = ala;
@@ -232,10 +245,10 @@
 	"use strict";
 
 	var ala = w.ala,
+		initEl = "script",
 		o = {
 			pluginName : "comment-embed",
-			initEl : "script",
-			initAttr : "data-comment"
+			endpoint: "/ala-embed/demo/sample-endpoint.php"
 		},
 		methods = {
 			_init: function(){
@@ -248,35 +261,55 @@
 				return ala( this )
 					.trigger( o.pluginName + "-create" )
 					.data( "init", true )
-					[ o.pluginName ]( "_injectiframe" );
+					[ o.pluginName ]( "_fetchData" );
 			},
-			_injectiframe: function() {
+			_injectiframe: function( data ) {
 				var iframe = document.createElement( "iframe" ),
 					script = ala( this ),
-					commentid = script.data( "comment" );
+					commentid = script.data( "comment" ),
+					prev = ala( this ).prev();
 
+				// Make the iframe seamless-ish.
 				iframe.width = "100%";
-				iframe.scrolling = "no";
+
 				iframe.frameborder = "0";
 				iframe.style.padding = "0";
+				iframe.scrolling = "no";
 				iframe.style.border = "none";
 				iframe.style.minHeight = "96px";
-				iframe.src = "sample-endpoint.php?id=" + commentid;
 
-				this.parentNode.insertBefore( iframe, this );
+				if( prev && prev.getAttribute( "id" ) === "comment-" + commentid ) {
+					// If the fallback markup is there, replace it.
+					this.parentNode.replaceChild( iframe, prev );
+				} else {
+					// If isn’t there (tsk tsk) insert the iframe before the script element.
+					this.parentNode.insertBefore( iframe, this );
+				}
 
-				setTimeout(function() {
-					iframe.height = iframe.contentWindow.document.body.scrollHeight;
-				}, 100 );
-
-				script[ o.pluginName ]( "_eventBindings", iframe );
+				iframe.contentWindow.document.write( data );
+				script[ o.pluginName ]( "_handleResize", iframe );
 			},
-			_eventBindings: function( iframe ) {
-				var fixHeight = function() {
-						iframe.height = iframe.contentWindow.document.body.scrollHeight;
-					};
+			_fetchData: function() {
+				var el = ala( this ),
+					commentid = el.data( "comment" );
 
-				ala( w ).bind( "resize", ala.fn.throttle( fixHeight, 200 ) );
+				ala.ajax( o.endpoint, {
+					// We’ll need to enable CORS on the endpoint side for this to work. We could chuck an `src` into the `iframe`, but resizing it would be a lot trickier.
+					data: "?id=" + commentid,
+					async: false,
+					success: function( data ) {
+						el[ o.pluginName ]( "_injectiframe", data );
+					}
+				});
+			},
+			_handleResize: function( iframe ) {
+				var fixHeight = function() {
+						iframe.height = iframe.contentWindow.document.getElementById( "comment" ).scrollHeight + 25;
+					};
+				setTimeout(function() {
+					fixHeight();
+				}, 100);
+				ala( w ).bind( "resize", ala.fn.throttle( fixHeight, 100 ) );
 			}
 		};
 
@@ -295,13 +328,11 @@
 
 	ala.extend( ala.fn[ o.pluginName ].prototype, methods );
 
-	ala( function(){
-		ala( o.initEl ).each(function() {
-			var el = ala( this );
+	ala( initEl ).each(function() {
+		var el = ala( this );
 
-			if( el.data( "comment" ) ) {
-				el[ o.pluginName ]();
-			}
-		});
+		if( el.data( "comment" ) ) {
+			el[ o.pluginName ]();
+		}
 	});
 }( this ));

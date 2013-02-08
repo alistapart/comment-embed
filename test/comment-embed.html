@@ -12,10 +12,6 @@
   <script src="../src/comment-util.js"></script>
   <script src="../src/comment-embed.js"></script>
   <script src="comment-embed_test.js"></script>
-  <!-- Removing access to jQuery and $. But it'll still be available as _$, if
-       you REALLY want to mess around with jQuery in the console. REMEMBER WE
-       ARE TESTING YOUR PLUGIN HERE -->
-  <script>window._$ = jQuery.noConflict(true);</script>
 </head>
 <body>
   <h1 id="qunit-header">Embedded ALA comments Test Suite</h1>
@@ -34,6 +30,15 @@
 
     <div class="data">
     </div>
+<!--
+    <div id="comment-1">
+	</div>
+	<script src="../dist/comment-embed.min.js" async data-comment="1"></script>
+
+	<div id="comment-1">
+	</div>
+	<script src="../dist/comment-embed.min.js" async data-comment="2"></script>
+-->
   </div>
 </body>
 </html>

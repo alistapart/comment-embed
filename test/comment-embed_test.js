@@ -53,5 +53,4 @@
 		ok( ala( ".data" ).data( "test" ) === "retest-data", "Re-setting works." );
 	});
 
-
 }(jQuery));

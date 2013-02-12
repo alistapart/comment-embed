@@ -12,7 +12,7 @@ module.exports = function(grunt) {
     },
     concat: {
       dist: {
-        src: ['src/comment-embed.js'],
+        src: ['src/comment-embed-util.js','src/comment-embed.js'],
         dest: 'dist/<%= pkg.name %>.js'
       }
     },

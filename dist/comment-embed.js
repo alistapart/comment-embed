@@ -290,18 +290,6 @@
 				iframe.style.border = "none";
 				iframe.style.minHeight = "96px";
 
-/*
-				iframe.onload = function( e ) {
-					w.console.log( e );
-					script[ o.pluginName ]( "_handleResize", iframe );
-				};
-*/
-
-/*
-				ala( iframe ).bind("readystatechange", function( e ) {
-					w.console.log( e );
-				});
-*/
 				if( prev && prev.getAttribute( "id" ) === "comment-" + commentid ) {
 					// If the fallback markup is there, replace it.
 					this.parentNode.replaceChild( iframe, prev );
@@ -315,6 +303,11 @@
 				iframewin.document.open();
 				iframewin.document.write( data );
 				iframewin.document.close();
+
+				iframewin.document.getElementsByTagName( "link" )[ 0 ].onload = function() {
+					script[ o.pluginName ]( "_handleResize", iframe );
+				};
+
 			},
 			_fetchData: function() {
 				var el = ala( this ),

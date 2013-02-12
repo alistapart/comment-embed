@@ -266,7 +266,20 @@
 				var iframe = document.createElement( "iframe" ),
 					script = ala( this ),
 					commentid = script.data( "comment" ),
-					prev = ala( this ).prev();
+					prev = ala( this ).prev(),
+					iframew = function( iframe ) {
+						if ( iframe.contentWindow ) {
+							iframew = iframe.contentWindow;
+						} else {
+							if ( iframe.contentDocument && iframe.contentDocument.document ) {
+								iframew = iframe.contentDocument.document;
+							} else {
+								iframew = iframe.contentDocument;
+							}
+						}
+						return iframew;
+					},
+					iframewin;
 
 				// Make the iframe seamless-ish.
 				iframe.width = "100%";
@@ -277,11 +290,18 @@
 				iframe.style.border = "none";
 				iframe.style.minHeight = "96px";
 
+/*
 				iframe.onload = function( e ) {
 					w.console.log( e );
 					script[ o.pluginName ]( "_handleResize", iframe );
 				};
+*/
 
+/*
+				ala( iframe ).bind("readystatechange", function( e ) {
+					w.console.log( e );
+				});
+*/
 				if( prev && prev.getAttribute( "id" ) === "comment-" + commentid ) {
 					// If the fallback markup is there, replace it.
 					this.parentNode.replaceChild( iframe, prev );
@@ -290,7 +310,11 @@
 					this.parentNode.insertBefore( iframe, this );
 				}
 
-				iframe.contentWindow.document.write( data );
+				iframewin = iframew( iframe );
+
+				iframewin.document.open();
+				iframewin.document.write( data );
+				iframewin.document.close();
 			},
 			_fetchData: function() {
 				var el = ala( this ),

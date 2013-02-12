@@ -63,6 +63,12 @@
 					script[ o.pluginName ]( "_handleResize", iframe );
 				};
 */
+
+/*
+				ala( iframe ).bind("readystatechange", function( e ) {
+					w.console.log( e );
+				});
+*/
 				if( prev && prev.getAttribute( "id" ) === "comment-" + commentid ) {
 					// If the fallback markup is there, replace it.
 					this.parentNode.replaceChild( iframe, prev );

@@ -277,6 +277,11 @@
 				iframe.style.border = "none";
 				iframe.style.minHeight = "96px";
 
+				iframe.onload = function( e ) {
+					w.console.log( e );
+					script[ o.pluginName ]( "_handleResize", iframe );
+				};
+
 				if( prev && prev.getAttribute( "id" ) === "comment-" + commentid ) {
 					// If the fallback markup is there, replace it.
 					this.parentNode.replaceChild( iframe, prev );
@@ -286,7 +291,6 @@
 				}
 
 				iframe.contentWindow.document.write( data );
-				script[ o.pluginName ]( "_handleResize", iframe );
 			},
 			_fetchData: function() {
 				var el = ala( this ),
@@ -305,9 +309,8 @@
 				var fixHeight = function() {
 						iframe.height = iframe.contentWindow.document.getElementById( "comment" ).scrollHeight + 25;
 					};
-				setTimeout(function() {
-					fixHeight();
-				}, 100);
+
+				fixHeight();
 				ala( w ).bind( "resize", ala.fn.throttle( fixHeight, 100 ) );
 			}
 		};

@@ -69,12 +69,13 @@
 
 				iframewin.document.open();
 				iframewin.document.write( data );
-				iframewin.document.close();
 
 				/* When the CSS inside the iframe has finished loading, resize the iframe to match the comment’s height. */
 				iframewin.document.getElementsByTagName( "link" )[ 0 ].onload = function() {
 					script[ o.pluginName ]( "_handleResize", iframe );
 				};
+
+				iframewin.document.close();
 
 			},
 			_fetchData: function() {

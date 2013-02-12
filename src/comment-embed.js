@@ -14,7 +14,7 @@
 		initEl = "script",
 		o = {
 			pluginName : "comment-embed",
-			endpoint: "/ala-embed/demo/sample-endpoint.php"
+			endpoint: "sample-endpoint.php"
 		},
 		methods = {
 			_init: function(){

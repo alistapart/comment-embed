@@ -53,7 +53,6 @@
 
 				iframe.frameborder = "0";
 				iframe.style.padding = "0";
-				iframe.scrolling = "no";
 				iframe.style.border = "none";
 				iframe.style.minHeight = "96px";
 				iframe.style.maxWidth = "75%";
@@ -78,6 +77,7 @@
 
 				/* When the CSS inside the iframe has finished loading, resize the iframe to match the comment’s height. */
 				iframewin.document.getElementsByTagName( "link" )[ 0 ].onload = function() {
+					iframe.scrolling = "no";
 					script[ o.pluginName ]( "_handleResize", iframe );
 				};
 

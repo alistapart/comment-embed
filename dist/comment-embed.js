@@ -238,7 +238,7 @@
 		initEl = "script",
 		o = {
 			pluginName : "ala-embedded-comment",
-			endpoint: "../sample-endpoint.php"
+			endpoint: "sample-endpoint.php"
 		},
 		methods = {
 			_init: function(){

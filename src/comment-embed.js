@@ -56,6 +56,12 @@
 				iframe.scrolling = "no";
 				iframe.style.border = "none";
 				iframe.style.minHeight = "96px";
+				iframe.style.maxWidth = "75%";
+				iframe.style.marginRight = "auto";
+				iframe.style.marginLeft = "auto";
+				iframe.style.border = "1px solid #dddddd";
+				iframe.style.borderRadius = "6px";
+				iframe.style.boxShadow = "3px 2px 15px -5px rgba(238, 238, 238,1)";
 
 				if( prev && prev.getAttribute( "id" ) === "comment-" + commentid ) {
 					// If the fallback markup is there, replace it.
@@ -93,7 +99,7 @@
 			},
 			_handleResize: function( iframe ) {
 				var fixHeight = function() {
-						iframe.height = iframe.contentWindow.document.getElementById( "comment" ).scrollHeight + 25;
+						iframe.height = iframe.contentWindow.document.getElementById( "comment" ).scrollHeight + 3;
 					};
 
 				fixHeight();

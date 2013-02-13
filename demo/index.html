@@ -12,31 +12,30 @@
 
 	<div style="width: 800px; margin: 50px auto;">
 	
-	<p>Here's an example of an embedded comment:</p>
+		<h2>Embedded ALA Comments</h2>
+		
+		<p>Thanks to Mat Marquis, we'll soon be able to offer the ability to embed A List Apart comments anywhere.</p>
+		
+		<p>The embed code consists of semantic code representing the comment, but this is only a fallback for the script that's included. At the moment the semantic code is identical to the code that makes up a comment on the site; we might want to simplify it.</p>
 	
-	<div class="ala-embedded-comment" id="comment-1">
-		<a href="#" class="commenter-avatar" target="_parent">
-			<img src="http://d.alistapart.com/_made/pix/authors/uploads/photo_116023_60_60_c1.jpg" width="60" height="60">
-		</a>
-		<a class="commenter-name" href="#" target="_parent">Jeffrey Zeldman</a>
-		<a class="comment-meta" href="http://alistapart.com/comments/a-list-apart-relaunches-new-features-new-design#333649" target="_parent">5:03 pm on January 25, 2013</a>
+		<p>Here's a sample:</p>
 		
-		<p><a href="http://alistapart.com/comments/a-list-apart-relaunches-new-features-new-design#333704" target="_parent">Christine Zoltok said</a>:</p>
-
-		<blockquote>
-		I second the request for an article-only RSS feed.
-		</blockquote>
-
-		<p>On our <a href="http://alistapart.com/about/rss" target="_parent"><span class="caps">RSS</span></a> page, you can now choose between a firehose feed (all <span class="caps">ALA</span> content) and a feed containing only articles and columns. Enjoy! :)</p>
+		<div class="ala-embedded-comment" id="comment-1">
+			<a href="#" class="commenter-avatar" target="_parent"><img src="http://d.alistapart.com/_made/pix/authors/uploads/photo_116023_60_60_c1.jpg" width="60" height="60"></a>
+			<a class="commenter-name" href="#" target="_parent">Jeffrey Zeldman</a>
+			<a class="comment-meta" href="http://alistapart.com/comments/a-list-apart-relaunches-new-features-new-design#333649" target="_parent">5:03 pm on January 25, 2013</a>
+			<p><a href="http://alistapart.com/comments/a-list-apart-relaunches-new-features-new-design#333704" target="_parent">Christine Zoltok said</a>:</p>
+			<blockquote>I second the request for an article-only RSS feed.</blockquote>
+			<p>On our <a href="http://alistapart.com/about/rss" target="_parent"><span class="caps">RSS</span></a> page, you can now choose between a firehose feed (all <span class="caps">ALA</span> content) and a feed containing only articles and columns. Enjoy! :)</p>
+			<p><a href="http://alistapart.com/comments/a-list-apart-relaunches-new-features-new-design#333699" target="_parent">Richard Fink said</a>:</p>	
+			<blockquote>a point-by-point rundown of why the choices you’ve made were made, would be right on point and very helpful to your readers</blockquote>
+			<p>I agree, and we plan to address select decisions in a series of brief blog posts, such as this one <a href="http://alistapart.com/blog/post/on-alt-text">on alt text</a>.</p>
+		</div>
 		
-		<p><a href="http://alistapart.com/comments/a-list-apart-relaunches-new-features-new-design#333699" target="_parent">Richard Fink said</a>:</p>
-
-		<blockquote>a point-by-point rundown of why the choices you’ve made were made, would be right on point and very helpful to your readers</blockquote>
-
-		<p>I agree, and we plan to address select decisions in a series of brief blog posts, such as this one <a href="http://alistapart.com/blog/post/on-alt-text">on alt text</a>.</p>
-	</div>
+		<script src="../dist/comment-embed.min.js" async data-comment="1"></script>
 		
+		<p>The model is obviously embedded tweets, but these differ a bit in that they can have a lot more content.</p>
 		
 	</div>
-	<script src="../dist/comment-embed.min.js" async data-comment="1"></script>
+	
 </body>

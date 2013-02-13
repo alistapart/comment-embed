@@ -24,7 +24,7 @@
 
 		<blockquote>a point-by-point rundown of why the choices you’ve made were made, would be right on point and very helpful to your readers</blockquote>
 
-		<p>I agree, and we plan to address select decisions in a series of brief blog posts, such as this one <a href="http://alistapart.com/blog/post/on-alt-text">on alt text</a>.</p>
+		<p>I agree, and we plan to address select decisions in a series of brief blog posts, such as this one <a href="http://alistapart.com/blog/post/on-alt-text" target="_parent">on alt text</a>.</p>
 	</div>
 </body>
 </html>

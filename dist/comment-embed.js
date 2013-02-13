@@ -26,7 +26,7 @@
 					// If it’s an object, pass it on through.
 					ret = ret.concat( el );
 				}
-				// If it’s a string, it’s a selector.
+				// If it’s a string, it’s a selector. We shouldn’t really use this.
 				if( elType === "string" ){
 					for( var i = 0, sel = doc.querySelectorAll( el ), il = sel.length; i < il; i++ ){
 						ret[ i ] = sel[ i ];
@@ -134,15 +134,6 @@
 		});
 	};
 
-	ala.fn.prev = function( ){
-		var prev = this[ 0 ].previousSibling;
-
-		while( prev && prev.nodeType !== 1 ) {
-			prev = prev.previousSibling;
-		}
-		return prev;
-	};
-
 	ala.fn.trigger = function( evt, args ){
 		var evts = evt.split( " " );
 		return this.each(function(){
@@ -246,8 +237,8 @@
 	var ala = w.ala,
 		initEl = "script",
 		o = {
-			pluginName : "comment-embed",
-			endpoint: "sample-endpoint.php"
+			pluginName : "ala-embedded-comment",
+			endpoint: "../sample-endpoint.php"
 		},
 		methods = {
 			_init: function(){
@@ -266,7 +257,7 @@
 				var iframe = document.createElement( "iframe" ),
 					script = ala( this ),
 					commentid = script.data( "comment" ),
-					prev = ala( this ).prev(),
+					target = w.document.getElementById(  o.pluginName + "-" + commentid ),
 					iframew = function( iframe ) {
 						if ( iframe.contentWindow ) {
 							iframew = iframe.contentWindow;
@@ -290,9 +281,9 @@
 				iframe.style.border = "none";
 				iframe.style.minHeight = "96px";
 
-				if( prev && prev.getAttribute( "id" ) === "comment-" + commentid ) {
+				if( target ) {
 					// If the fallback markup is there, replace it.
-					this.parentNode.replaceChild( iframe, prev );
+					target.parentNode.replaceChild( iframe, target );
 				} else {
 					// If isn’t there (tsk tsk) insert the iframe before the script element.
 					this.parentNode.insertBefore( iframe, this );
@@ -326,7 +317,7 @@
 			},
 			_handleResize: function( iframe ) {
 				var fixHeight = function() {
-						iframe.height = iframe.contentWindow.document.getElementById( "comment" ).scrollHeight + 25;
+						iframe.height = iframe.contentWindow.document.getElementById( o.pluginName ).scrollHeight + 25;
 					};
 
 				fixHeight();
@@ -349,11 +340,14 @@
 
 	ala.extend( ala.fn[ o.pluginName ].prototype, methods );
 
-	ala( initEl ).each(function() {
-		var el = ala( this );
+	// Kick it all off.
+	var scripts = w.document.getElementsByTagName( initEl );
+	for( var i = 0, l = scripts.length; i < l; i++) {
+		var el = ala( scripts[ i ] );
 
 		if( el.data( "comment" ) ) {
 			el[ o.pluginName ]();
 		}
-	});
+	}
+
 }( this ));

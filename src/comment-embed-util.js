@@ -26,7 +26,7 @@
 					// If it’s an object, pass it on through.
 					ret = ret.concat( el );
 				}
-				// If it’s a string, it’s a selector.
+				// If it’s a string, it’s a selector. We shouldn’t really use this.
 				if( elType === "string" ){
 					for( var i = 0, sel = doc.querySelectorAll( el ), il = sel.length; i < il; i++ ){
 						ret[ i ] = sel[ i ];
@@ -132,15 +132,6 @@
 				}
 			}
 		});
-	};
-
-	ala.fn.prev = function( ){
-		var prev = this[ 0 ].previousSibling;
-
-		while( prev && prev.nodeType !== 1 ) {
-			prev = prev.previousSibling;
-		}
-		return prev;
 	};
 
 	ala.fn.trigger = function( evt, args ){

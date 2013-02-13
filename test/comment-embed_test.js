@@ -26,6 +26,7 @@
 
 	module('Utilities', {
 		setup: function() {
+
 		}
 	});
 
@@ -43,7 +44,7 @@
 		ok( ala( ready ), "Passing a function acts as a doc.ready shortcut.");
 	});
 
-	test('Data', 3	, function() {
+	test('Data', 3, function() {
 		ok( ala( ".data" ).data( "test" ) === undefined, "Nothing explodes when you try to get data from a dataless element." );
 
 		ala( ".data" ).data( "test", "testdata" );
@@ -51,6 +52,18 @@
 
 		ala( ".data" ).data( "test", "retest-data" );
 		ok( ala( ".data" ).data( "test" ) === "retest-data", "Re-setting works." );
+	});
+
+	test('Plugin Tests', 0, function() {
+		var test1 = document.getElementById( "test1" ),
+			test2 = document.getElementById( "test2" );
+
+//		window.console.log( test1.previousSibling );
+//		window.console.log( test2.previousSibling );
+
+		//ok( undefined === undefined, "Nothing explodes when you try to get data from a dataless element." );
+		//ok( ala( ".data" ).data( "test" ) === undefined, "Nothing explodes when you try to get data from a dataless element." );
+
 	});
 
 }(jQuery));

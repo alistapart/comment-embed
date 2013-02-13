@@ -5,7 +5,7 @@
 	<link rel="stylesheet" href="../dist/comment-embed.min.css"> 
 </head>
 <body>
-	<div class="ala-embedded-comment" id="comment">
+	<div class="ala-embedded-comment" id="ala-embedded-comment">
 		<a href="#" class="commenter-avatar" target="_parent">
 			<img src="http://d.alistapart.com/_made/pix/authors/uploads/photo_116023_60_60_c1.jpg" width="60" height="60">
 		</a>

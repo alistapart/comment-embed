@@ -7,8 +7,9 @@ The embed code consists of markup representing the comment (as a fallback) and a
 
 ## Release History
 
-*v0.0.2*
+**v0.0.2**
+
 Ready for testing.
 
-*v0.0.1*
+**v0.0.1**
 This thing doesn’t not work.

@@ -7,6 +7,9 @@ The embed code consists of markup representing the comment (as a fallback) and a
 
 ## Release History
 
+**v0.0.3:**
+Added sample ExpressionEngine template
+
 **v0.0.2:**
 Ready for testing.
 

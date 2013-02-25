@@ -1,4 +1,7 @@
-<?php header('Access-Control-Allow-Origin: *'); // this could also be done in .htaccess ?>
+<?php 
+// this could also be done in .htaccess 
+header('Access-Control-Allow-Origin: *');
+?>
 
 <!doctype html>
 

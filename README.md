@@ -5,13 +5,14 @@ The embed code consists of markup representing the comment (as a fallback) and a
 ## Examples
 <a href="http://alistapart.github.com/comment-embed/demo/">Basic demo</a>
 
+## Sample Endpoints
+
+We’ve added an example of how an endpoint for the script might work with Expression Engine—this is the one we have running on <a href="http://alistapart.com">alistapart.com</a> now.
+
 ## Release History
 
-**v0.0.3:**
-Added sample ExpressionEngine template
-
 **v0.0.2:**
-Ready for testing.
+Ready for testing; public release.
 
 **v0.0.1:**
 This thing doesn’t not work.

@@ -1,7 +1,4 @@
-<?php 
-// this could also be done in .htaccess 
-header('Access-Control-Allow-Origin: *');
-?>
+{exp:ala_headers:cors}
 
 <!doctype html>
 

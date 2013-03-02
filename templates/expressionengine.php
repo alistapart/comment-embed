@@ -26,7 +26,7 @@
 
 	<div id="embedded-comment">
 	
-		{if avatar_url != ""}<img src="{avatar_url}" alt="" />{/if}
+		{if avatar}<img src="{avatar_url}" alt="" />{/if}
 		
 		<h1>{name} commented on {title}</h1>
 		

@@ -1,5 +1,11 @@
 {exp:ala_headers:cors}
 
+{!-- 
+	It's worth noting that EE's native caching doesn't seem to play well with CORS (at least in our 
+	tests so far); additionally if you're going to use CE Cache, make sure the ala_headers:cors tag 
+	is outside the CE Cache tag. 
+--}
+
 <!doctype html>
 
 <html lang="en">

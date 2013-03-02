@@ -60,6 +60,7 @@
 				iframe.style.marginLeft = "auto";
 				iframe.style.border = "1px solid #dddddd";
 				iframe.style.borderRadius = "6px";
+				iframe.style.background = "#fff";
 				iframe.style.boxShadow = "3px 2px 15px -5px rgba(238, 238, 238,1)";
 
 				if( target ) {
